@@ -57,15 +57,6 @@
               </ul>
             </li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
         </div><!--/.navbar-collapse -->
       </div>
     </div>
@@ -74,34 +65,54 @@
 
 
     <script id="songTemplate" type="text/template">
-
-            <td><a href="#"><%= title %></a></td>
-            <td><a href="#"><%= artist %></a></td>
-            <td><a href="#"><%= album %></a></td>
-            <td><a href="#"><%= length %></a></td>
-
+ <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                 
+          <%= title %> 
+           <%= artist %> 
+           <%= album %> 
+            <%= length %> 
+  </a>
     </script>
+
+
+  
+
 
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-lg-12">
-          <table id="songs" class="table table-striped">
-            <thead>
-              <tr>
-                <td>Title</td>
-                <td>Artist</td>
-                <td>Album</td>
-                <td>Length</td>
-              </tr>
-            </thead>
-            <tbody class="songContainer">
-             
-            </tbody>
-          </table>
+          <div id="songs" class="table table-striped">
+            <div>
+              <ul>
+                <li>Title</li>
+                <li>Artist</li>
+                <li>Album</li>
+                <li>Length</li>
+              </ul>
+            </div>
+           <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="panel-title songContainer">
+                 
+                </div>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse">
+                <div class="panel-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+          </div>
+        
+
+
         </div>
       </div>
-
+    </div>
+  </div>
+ 
       <hr>
 
       <div class="container">

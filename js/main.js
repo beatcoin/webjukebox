@@ -16,14 +16,15 @@
         }
     });
 
-    var uuid = 'beatcoin';
+    var uuid = 'beatcoin';// change with subdomain.
     var Jukebox = Backbone.Collection.extend({
        model:Song,
-       url:'beatcoin/jukebox/' + uuid + '/queue' // change this when it is all go
+       url:'http://engine.beatcoin.org/jukebox/526c1ed6eb63e7ebe22dabe6/songs'
+      // url:'beatcoin/jukebox/' + uuid + '/queue' // change this when it is all go
     });
 
     var SongView = Backbone.View.extend({
-        tagName:"tr",
+        tagName:"div",
         className:"songContainer",
         template:$("#songTemplate").html(),
 
