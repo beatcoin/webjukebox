@@ -1,17 +1,12 @@
 (function ($) {
 
-    var Song = Backbone.Model.extend({
-        
-    });
+    var Song = Backbone.Model.extend({});
 
 
     var Queue = Backbone.Collection.extend({
         model:Song,
         initialize: function(atts,opt){
-            var full = window.location.host;
-            var parts = full.split('.');
-            var sub = parts[0];
-            this.jbId = opt.jbMap[sub];
+	    this.jbId = opt.jbId;
         },
         url: function() {
             return 'http://engine.beatcoin.org/jukebox/'+this.jbId+'/queue';
@@ -25,10 +20,7 @@
     var Jukebox = Backbone.Collection.extend({
        model:Song,
        initialize: function(atts,opt){
-            var full = window.location.host;
-            var parts = full.split('.');
-            var sub = parts[0];
-            this.jbId = opt.jbMap[sub];
+	    this.jbId = opt.jbId;
        },
         url: function() {
             return 'http://engine.beatcoin.org/jukebox/'+this.jbId+'/songs';
@@ -72,7 +64,6 @@
             this.collection.on("change reset add remove", this.renderQueueSong, this);
         },
 
-
         renderQueueSong:function(item){
             var queueSongView = new QueueSongView({
                 model: item
@@ -82,8 +73,14 @@
     });
 
     var jbMap = {'disrupt':'526c1ed6eb63e7ebe22dabe6','meinhard':'526c687e1889080387b0911c'};
+    var full = window.location.host;
+    var parts = full.split('.');
+    var sub = parts[0];
+    var jbId = (jbMap[sub])?jbMap[sub]:jbMap.disrupt;
+    $('a.navbar-brand').append('<h2> '+sub+'</h2>');
+    console.dir($('a.navbar-brand').children(':nth-child(2)').text());
 
-    var queue = new Queue([],{jbMap: jbMap});
+    var queue = new Queue([],{jbId: jbId});
 
     var queueView = new QueueView({collection:queue});
         queue.fetch();
@@ -114,7 +111,7 @@
     });
 
 
-    var jukebox = new Jukebox([],{jbMap: jbMap});
+    var jukebox = new Jukebox([],{jbId: jbId});
 
     var jukeboxView = new JukeboxView({collection:jukebox});
         jukebox.fetch();
