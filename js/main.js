@@ -66,15 +66,15 @@
     });
 
     var QueueView = Backbone.View.extend({
-        el:$("#songs"),
+        el:$("#queue"),
 
         initialize:function(){
-            this.collection.on("change reset add remove", this.renderSong, this);
+            this.collection.on("change reset add remove", this.renderQueueSong, this);
         },
 
 
         renderQueueSong:function(item){
-            var songView = new QueueSongView({
+            var queueSongView = new QueueSongView({
                 model: item
             });
             this.$el.append(queueSongView.render().el);
