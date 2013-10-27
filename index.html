@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans:700' rel='stylesheet' type='text/css'>
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 
@@ -29,7 +30,7 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-static-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -37,57 +38,54 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">beatcoin</a>
+          
+            <a class="navbar-brand" href="#"><img src="img/logo.png" width="75px" /> <h1>beatcoin</h1></a>
+          
         </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!--/.navbar-collapse -->
+        
       </div>
     </div>
 
 
-    <form id="paymentAmount">
-    Payment Amount: <input type="text" name="firstname" value="5"><br>
-    </form> 
-
 
     <script id="songTemplate" type="text/template">
        <div class="panel-heading">
-            <div class="panel-title">
-                   <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= file_identifier %>">       
-
-                    <%= meta.title %> |
-                    <%= meta.artist %> |
-                    <%= meta.album %> |
-                    <%= meta.length %> 
-                  </a>
-            </div>
-      </div>
-      <div id="collapse<%= file_identifier %>" class="panel-collapse collapse">
-        <div class="panel-body">
-          
-          <a href="bitcoin:<%= btc_pay_address %>">bitcoin:<%= btc_pay_address %></a>
-          <img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=<%= btc_pay_address %>&chld=H|0"
+          <div class="panel-title">
+            <ul class="">
+              <li> 
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= jukebox_id %>">
+                  <%= meta.title %>&nbsp;  
+                </a>
+              </li>
+              <li> 
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= jukebox_id %>">     
+                  <%= meta.artist %>&nbsp;   
+                </a>
+              </li>
+              <li> 
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= jukebox_id %>">     
+                  <%= meta.album %>&nbsp;   
+                </a>
+              </li>
+              <li> 
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= jukebox_id %>">     
+                  <%= meta.length %>&nbsp;    
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
- 
-    </script>
+        <div id="collapse<%= jukebox_id %>" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p>
+              <a href="bitcoin:<%= btc_pay_address %>">bitcoin:<%= btc_pay_address %></a>
+            </p>
+            <p>
+              <img width="150px;" src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=<%= btc_pay_address %>&chld=H|0" />
+            </p>
+          </div>
+        </div>
+      </script>
 
 
   
@@ -97,29 +95,40 @@
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-lg-12">
-          <div id="songs" class="table table-striped">
-            <div>
-              <ul>
-                <li>Title</li>
-                <li>Artist</li>
-                <li>Album</li>
-                <li>Length</li>
+          <div id="songs">
+            
+              <ul class="nav nav-pills">
+                <li><a href="#">Title</a></li>
+                <li><a href="#">Artist</a></li>
+                <li><a href="#">Album</a></li>
+                <li><a href="#">Length</a></li>
               </ul>
-            </div>
+           
            <div class="panel-group" id="accordion">
             <div class="panel panel-default songContainer">
              
             </div>
           </div>
-        
-
-
         </div>
       </div>
     </div>
   </div>
  
       <hr>
+
+
+      <script id="queueSongTemplate" type="text/template">
+       <div class="">
+         <ul class="nav nav-pills">
+                     <li><%= meta.title %> |</li>
+                     <li><%= meta.artist %> |</li>
+                     <li><%= meta.album %> |</li>
+                     <li><%= meta.length %> </li>
+            </ul>
+
+      </div>
+    </script>
+
 
       <div class="container">
       <!-- Example row of columns -->
@@ -146,7 +155,9 @@
               </tr>
             </tbody>
           </table>
-            <p>songs</p>
+             <div class="songContainer">
+             
+            </div>
           </div>
         </div>
       </div>

@@ -5,6 +5,15 @@
     });
 
 
+    var Queue = Backbone.Collection.extend({
+        model:Song,
+        url:'http://engine.beatcoin.org/jukebox/526c1ed6eb63e7ebe22dabe6/queue',
+
+        parse:function(response){
+            return response.items;
+       }
+    });
+
     var Jukebox = Backbone.Collection.extend({
        model:Song,
        url:'http://engine.beatcoin.org/jukebox/526c1ed6eb63e7ebe22dabe6/songs',
@@ -27,6 +36,40 @@
         }
 
     });
+
+    var QueueSongView = Backbone.View.extend({
+        tagName:"div",
+        className:"queueSongContainer",
+
+        render:function () {
+            var tmpl = _.template($("#queueSongTemplate").html()); 
+            this.$el.html(tmpl(this.model.toJSON())); 
+            return this;
+        }
+
+    });
+
+    var QueueView = Backbone.View.extend({
+        el:$("#songs"),
+
+        initialize:function(){
+            this.collection.on("change reset add remove", this.renderSong, this);
+        },
+
+
+        renderQueueSong:function(item){
+            var songView = new QueueSongView({
+                model: item
+            });
+            this.$el.append(queueSongView.render().el);
+        }
+    });
+
+    var queue = new Queue();
+
+    var queueView = new QueueView({collection:queue});
+        queue.fetch();
+
 
     var JukeboxView = Backbone.View.extend({
         el:$("#songs"),
