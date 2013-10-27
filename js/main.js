@@ -81,7 +81,7 @@
         }
     });
 
-    var jbMap = {'disrupt':'526c1ed6eb63e7ebe22dabe6','meinhard':'111c1ed6eb63e7ebe22dabe2'};
+    var jbMap = {'disrupt':'526c1ed6eb63e7ebe22dabe6','meinhard':'526c687e1889080387b0911c'};
 
     var queue = new Queue([],{jbMap: jbMap});
 
