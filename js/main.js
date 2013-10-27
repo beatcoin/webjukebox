@@ -7,7 +7,15 @@
 
     var Queue = Backbone.Collection.extend({
         model:Song,
-        url:'http://engine.beatcoin.org/jukebox/526c1ed6eb63e7ebe22dabe6/queue',
+        initialize: function(atts,opt){
+            var full = window.location.host;
+            var parts = full.split('.');
+            var sub = parts[0];
+            this.jbId = opt.jbMap[sub];
+        },
+        url: function() {
+            return 'http://engine.beatcoin.org/jukebox/'+this.jbId+'/queue';
+        },
 
         parse:function(response){
             return response.items;
@@ -16,7 +24,15 @@
 
     var Jukebox = Backbone.Collection.extend({
        model:Song,
-       url:'http://engine.beatcoin.org/jukebox/526c1ed6eb63e7ebe22dabe6/songs',
+       initialize: function(atts,opt){
+            var full = window.location.host;
+            var parts = full.split('.');
+            var sub = parts[0];
+            this.jbId = opt.jbMap[sub];
+       },
+        url: function() {
+            return 'http://engine.beatcoin.org/jukebox/'+this.jbId+'/songs';
+        },
 
        parse:function(response){
             return response.items;
@@ -30,7 +46,7 @@
         className:"songContainer",
 
         render:function () {
-            var tmpl = _.template($("#songTemplate").html()); 
+            var tmpl = _.template($("#songTemplate").html());
             this.$el.html(tmpl(this.model.toJSON())); 
             return this;
         }
@@ -65,7 +81,9 @@
         }
     });
 
-    var queue = new Queue();
+    var jbMap = {'disrupt':'526c1ed6eb63e7ebe22dabe6','meinhard':'111c1ed6eb63e7ebe22dabe2'};
+
+    var queue = new Queue([],{jbMap: jbMap});
 
     var queueView = new QueueView({collection:queue});
         queue.fetch();
@@ -95,7 +113,8 @@
         }
     });
 
-    var jukebox = new Jukebox();
+
+    var jukebox = new Jukebox([],{jbMap: jbMap});
 
     var jukeboxView = new JukeboxView({collection:jukebox});
         jukebox.fetch();
