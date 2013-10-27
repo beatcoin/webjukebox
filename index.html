@@ -62,17 +62,31 @@
     </div>
 
 
+    <form id="paymentAmount">
+    Payment Amount: <input type="text" name="firstname" value="5"><br>
+    </form> 
 
 
     <script id="songTemplate" type="text/template">
- <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                 
-          <%= status %> 
-          <%= meta.title %> 
-          <%= meta.artist %> 
-          <%= meta.album %> 
-          <%= meta.length %> 
-  </a>
+       <div class="panel-heading">
+            <div class="panel-title">
+                   <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= file_identifier %>">       
+
+                    <%= meta.title %> |
+                    <%= meta.artist %> |
+                    <%= meta.album %> |
+                    <%= meta.length %> 
+                  </a>
+            </div>
+      </div>
+      <div id="collapse<%= file_identifier %>" class="panel-collapse collapse">
+        <div class="panel-body">
+          
+          <a href="bitcoin:<%= btc_pay_address %>?amount=5">bitcoin:<%= btc_pay_address %>?amount=5</a>
+          <img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=<%= btc_pay_address %>&chld=H|0"
+        </div>
+      </div>
+ 
     </script>
 
 
@@ -93,17 +107,8 @@
               </ul>
             </div>
            <div class="panel-group" id="accordion">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <div class="panel-title songContainer">
-                 
-                </div>
-              </div>
-              <div id="collapseOne" class="panel-collapse collapse">
-                <div class="panel-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                </div>
-              </div>
+            <div class="panel panel-default songContainer">
+             
             </div>
           </div>
         

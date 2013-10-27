@@ -15,10 +15,11 @@
 
     });
 
+
     var SongView = Backbone.View.extend({
         tagName:"div",
         className:"songContainer",
-        
+
         render:function () {
             var tmpl = _.template($("#songTemplate").html()); 
             this.$el.html(tmpl(this.model.toJSON())); 
@@ -38,7 +39,7 @@
             var that = this;
            
             _.each(this.collection.models, function(item){
-             
+                
                 that.renderSong(item);
             }, this);
         },
@@ -55,5 +56,7 @@
 
     var jukeboxView = new JukeboxView({collection:jukebox});
         jukebox.fetch();
+
+
 
 })(jQuery);
