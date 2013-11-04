@@ -1,6 +1,6 @@
 define([
 	'backbone',
-	'views/item/songview',
+	'views/item/songView',
 	'hbs!tmpl/composite/archiveView'
 ],
 function( Backbone, Songview, ArchiveviewTmpl  ) {

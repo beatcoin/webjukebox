@@ -3,12 +3,14 @@ define([
 	'communicator',
 	'collections/queue',
 	'collections/archive',
+	'collections/history',
 	'views/headerView',
-	'views/composite/queueview',
-	'views/composite/archiveView'
+	'views/composite/queueView',
+	'views/composite/archiveView',
+	'views/playingView'
 ],
 
-function( Backbone, Communicator, Queue, Archive, HeaderView, QueueView, ArchiveView ) {
+function( Backbone, Communicator, Queue, Archive, PlayHistory, HeaderView, QueueView, ArchiveView, PlayingView ) {
     'use strict';
 
 	var App = new Backbone.Marionette.Application();
@@ -30,11 +32,15 @@ function( Backbone, Communicator, Queue, Archive, HeaderView, QueueView, Archive
 		var parts = full.split('.');
 		var account = parts[0];
 		//initialize views
+		var history = new PlayHistory();
+		App.playingRegion.show(new PlayingView({collection:history}));
+		history.fetch();
 		var archive = new Archive();
 		App.archiveRegion.show(new ArchiveView({collection:archive}));
 		archive.fetch();
-		var queue = new Queue([{id:'1',title:'hello'},{id:'2',title:'bla'}]);
+		var queue = new Queue();
 		App.queueRegion.show(new QueueView({collection:queue}));
+		queue.fetch();
 		//start router
 		Communicator.mediator.trigger("APP:START");
 	});

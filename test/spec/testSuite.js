@@ -12,7 +12,8 @@ define(function() {
 		'spec/views/composite/archiveView.js',
 		'spec/views/composite/queueview.js',
 		'spec/views/headerView.js',
-		'spec/views/item/songview.js'
+		'spec/views/item/songview.js',
+		'spec/views/playingView.js'
 		]
 	};
 });
