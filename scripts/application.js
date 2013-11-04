@@ -33,7 +33,7 @@ function( Backbone, Communicator, Queue, Archive, PlayHistory, HeaderView, Queue
 		var account = parts[0];
 		//initialize views
 		var history = new PlayHistory();
-		App.playingRegion.show(new PlayingView({collection:history}));
+		App.playingRegion.show(new PlayingView({col:history}));
 		history.fetch();
 		var archive = new Archive();
 		App.archiveRegion.show(new ArchiveView({collection:archive}));
