@@ -19,7 +19,7 @@ module.exports = function (grunt) {
 
     // configurable paths
     var yeomanConfig = {
-        app: '',
+        app: 'app',
         dist: 'dist'
     };
 
@@ -29,11 +29,19 @@ module.exports = function (grunt) {
         // watch list
         watch: {
             
+            compass: {
+                files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+                tasks: ['compass']
+            },
+            
             livereload: {
                 files: [
                     
-                    'scripts/{,**/}*.js',
-                    'templates/{,**/}*.hbs',
+                    '<%= yeoman.app %>/*.html',
+                    '{.tmp,<%= yeoman.app %>}/styles/{,**/}*.css',
+                    '{.tmp,<%= yeoman.app %>}/scripts/{,**/}*.js',
+                    '{.tmp,<%= yeoman.app %>}/templates/{,**/}*.hbs',
+                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
                     
                     'test/spec/{,**/}*.js'
                 ],
@@ -63,21 +71,41 @@ module.exports = function (grunt) {
 
         // mocha command
         exec: {
-            echo_grunt_version: {
-              cmd: function() { return 'echo ' + this.version; }
+            mocha: {
+                command: 'mocha-phantomjs http://localhost:<%= connect.testserver.options.port %>/test',
+                stdout: true
             }
-            // mocha: {
-            //     command: 'mocha-phantomjs http://localhost:<%= connect.testserver.options.port %>/test',
-            //     stdout: true
-            // }
         },
 
+        
+        // express app
+        express: {
+            options: {
+                // Override defaults here
+                port: '9000'
+            },
+            dev: {
+                options: {
+                    script: 'server/app.js'
+                }
+            },
+            prod: {
+                options: {
+                    script: 'server/app.js'
+                }
+            },
+            test: {
+                options: {
+                    script: 'server/app.js'
+                }
+            }
+        },
         
 
         // open app and test page
         open: {
             server: {
-                path: 'http://localhost:<%= connect.testserver.options.port %>'
+                path: 'http://localhost:<%= express.options.port %>'
             }
         },
 
@@ -100,6 +128,25 @@ module.exports = function (grunt) {
             ]
         },
 
+        
+        // compass
+        compass: {
+            options: {
+                sassDir: '<%= yeoman.app %>/styles',
+                cssDir: '.tmp/styles',
+                imagesDir: '<%= yeoman.app %>/images',
+                javascriptsDir: '<%= yeoman.app %>/scripts',
+                fontsDir: '<%= yeoman.app %>/styles/fonts',
+                importPath: 'app/bower_components',
+                relativeAssets: true
+            },
+            dist: {},
+            server: {
+                options: {
+                    debugInfo: true
+                }
+            }
+        },
         
 
         // require
@@ -247,9 +294,9 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
-            
+            'compass:server',
             'connect:testserver',
-            
+            'express:dev',
             'exec',
             'open',
             'watch'
