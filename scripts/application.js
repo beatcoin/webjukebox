@@ -35,12 +35,15 @@ function( Backbone, Communicator, Queue, Archive, PlayHistory, HeaderView, Queue
 		var history = new PlayHistory();
 		App.playingRegion.show(new PlayingView({col:history}));
 		history.fetch();
-		var archive = new Archive();
-		App.archiveRegion.show(new ArchiveView({collection:archive}));
-		archive.fetch();
+
 		var queue = new Queue();
 		App.queueRegion.show(new QueueView({collection:queue}));
 		queue.fetch();
+
+		var archive = new Archive();
+		App.archiveRegion.show(new ArchiveView({collection:archive,queue:queue}));
+		archive.fetch();
+
 		//start router
 		Communicator.mediator.trigger("APP:START");
 	});

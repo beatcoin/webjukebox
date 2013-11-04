@@ -1,9 +1,9 @@
 define([
 	'backbone',
-	'views/item/songView',
+	'views/item/payView',
 	'hbs!tmpl/composite/queueView_tmpl'
 ],
-function( Backbone, Songview, QueueviewTmpl  ) {
+function( Backbone, PayView, QueueviewTmpl  ) {
     'use strict';
 
 	/* Return a CompositeView class definition */
@@ -13,7 +13,7 @@ function( Backbone, Songview, QueueviewTmpl  ) {
 			console.log('initialize a Queueview CompositeView');
 		},
 		
-		itemView: Songview,
+		itemView: PayView,
 		
 		template: QueueviewTmpl,
 		

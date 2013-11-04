@@ -9,13 +9,18 @@ function( Backbone, Songview, ArchiveviewTmpl  ) {
 	/* Return a CompositeView class definition */
 	return Backbone.Marionette.CompositeView.extend({
 
-		initialize: function() {
+		initialize: function(opt) {
 			console.log('initialize a Archiveview CompositeView');
+			this.queue = opt.queue;
 		},
 		
 		itemView: Songview,
 		
 		template: ArchiveviewTmpl,
+
+		itemViewOptions : function () { 
+			return { queue: this.queue }; 
+		},
 		
 
 		/* ui selector cache */
