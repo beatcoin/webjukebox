@@ -11,6 +11,10 @@ function( Backbone, Song ) {
 			console.log("initialize a Archive collection");
 		},
 
+		url: function() {
+            return window.opt.basePath + '/archives/2ef06f25-bd22-48e1-a3ea-4719a5554140/songs';
+        },
+
 		model: Song
 		
 	});

@@ -7,9 +7,13 @@ function( Backbone, Song ) {
 
 	/* Return a collection class definition */
 	return Backbone.Collection.extend({
-		initialize: function() {
-			console.log("initialize a Queue collection");
+		initialize: function(opt) {
+			console.log('initialize a Queue collection');
 		},
+
+		url: function() {
+            return window.opt.basePath + '/queues/2ef06f25-bd22-48e1-a3ea-4719a5554140/songs';
+        },
 
 		model: Song
 		

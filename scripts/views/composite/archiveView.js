@@ -22,7 +22,7 @@ function( Backbone, Songview, ArchiveviewTmpl  ) {
 		ui: {},
 
 		/* where are we appending the items views */
-		itemViewContainer: '',
+		itemViewContainer: 'div.panel',
 
 		/* Ui events hash */
 		events: {},
