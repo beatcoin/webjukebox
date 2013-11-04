@@ -1,0 +1,36 @@
+<div class="panel-heading">
+  <div class="panel-title">
+    <ul class="">
+      <li> 
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{id}}">
+          {{title}}&nbsp;  
+        </a>
+      </li>
+      <li> 
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{id}}">     
+          {{artist}}&nbsp;   
+        </a>
+      </li>
+      <li> 
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{id}}">     
+          {{album}}&nbsp;   
+        </a>
+      </li>
+      <li> 
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{id}}">     
+          {{length}}&nbsp;    
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="collapse{{id}}" class="panel-collapse collapse">
+  <div class="panel-body">
+    <p>
+      <a href="bitcoin:{{address}}">bitcoin:{{address}}</a>
+    </p>
+    <p>
+      <img width="150px;" src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=bitcoin:{{address}}&chld=H|0" />
+    </p>
+  </div>
+</div>
