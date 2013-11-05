@@ -4,4 +4,3 @@ dist
 .tmp
 .sass-cache
 app/components
-app/images
