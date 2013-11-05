@@ -17,7 +17,8 @@ require.config({
         lightbox: {
             deps: [
                 'jquery'
-            ]
+            ],
+            exports: 'Lightbox'
         },
         bootstrap: {
             deps: ['jquery'],
@@ -49,7 +50,7 @@ require.config({
         i18nprecompile: '../bower_components/require-handlebars-plugin/hbs/i18nprecompile',
         json2: '../bower_components/require-handlebars-plugin/hbs/json2',
         hbs: '../bower_components/require-handlebars-plugin/hbs',
-        lightbox: 'vendor/jquery.lightbox.js'
+        lightbox: 'vendor/jquery.lightbox'
     },
 
     hbs: {
