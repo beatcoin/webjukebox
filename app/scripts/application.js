@@ -43,7 +43,15 @@ function( Backbone, Communicator, Queue, Archive, PlayHistory, HeaderView, Queue
 		    if (sub){
 				account = jbMap[sub];
 		    }else{
-				account = jbMap.test;
+				query = 'id';
+				regex = new RegExp('[\\?&]' + query + '=([^&#]*)'),
+				results = regex.exec(location.search);
+			    sub = (results === null) ? null : decodeURIComponent(results[1].replace(/\+/g, ' '));
+			    if (sub){
+					account = sub;
+			    }else{
+					account = jbMap.test;
+				}
 		    }
 		}
 		console.log('account: '+account);
@@ -51,13 +59,13 @@ function( Backbone, Communicator, Queue, Archive, PlayHistory, HeaderView, Queue
 		var history = new PlayHistory({account:account});
 		App.playingRegion.show(new PlayingView({col:history}));
 		history.fetch();
-
+		
 		var queue = new Queue({account:account});
 		App.queueRegion.show(new QueueView({collection:queue}));
 		queue.fetch();
 
 		var archive = new Archive({account:account});
-		App.archiveRegion.show(new ArchiveView({collection:archive,queue:queue}));
+		App.archiveRegion.show(new ArchiveView({collection:archive,queue:queue,account:account}));
 		archive.fetch();
 
 		//start router

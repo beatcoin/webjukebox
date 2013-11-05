@@ -10,7 +10,10 @@ function( Backbone, PayView, QueueviewTmpl  ) {
 	return Backbone.Marionette.CompositeView.extend({
 
 		initialize: function() {
-			console.log('initialize a Queueview CompositeView');
+			var collection = this.collection;
+			window.setInterval(function(){
+				collection.fetch();
+			}, 2000);
 		},
 		
 		itemView: PayView,
