@@ -31,7 +31,7 @@ function( Backbone, Communicator, Queue, Archive, PlayHistory, HeaderView, Queue
 		var full = window.location.host;
 		var parts = full.split('.');
 		var sub = parts[0];
-		var jbMap = {'test':'da8eefee-a420-4564-aaac-6aa3775534e2','meinhard':'526c687e1889080387b0911c'};
+		var jbMap = {'test':window.opt.defaultAccount,'meinhard':'526c687e1889080387b0911c'};
 		var account;
 		if(jbMap[sub]){
 			account = jbMap[sub];
