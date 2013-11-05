@@ -9,8 +9,8 @@ function( Backbone, SongviewTmpl  ) {
 	return Backbone.Marionette.ItemView.extend({
 
 		initialize: function(opt) {
-			console.log("initialize a Songview ItemView");
 			this.queue = opt.queue;
+			this.account = opt.account;
 		},
 		
 		template: SongviewTmpl,
@@ -28,12 +28,12 @@ function( Backbone, SongviewTmpl  ) {
 			e.preventDefault();
 			var self = this;
 			$.ajax({
-			    type: "PUT",
-			    url: window.opt.basePath + '/queues/2ef06f25-bd22-48e1-a3ea-4719a5554140/songs',
-			    contentType: "application/json",
+			    type: 'PUT',
+			    url: window.opt.basePath + '/queues/'+this.account+'/songs',
+			    contentType: 'application/json',
 			    data: '{"id": "'+this.model.get('id')+'"}',
 			    success: function(result) {
-	                alert(result.address);
+	                console.log(result.address);
 	                self.queue.fetch();
 	            }
 			});

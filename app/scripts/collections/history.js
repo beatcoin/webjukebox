@@ -7,12 +7,12 @@ function( Backbone, Song ) {
 
 	/* Return a collection class definition */
 	return Backbone.Collection.extend({
-		initialize: function() {
-			console.log("initialize a History collection");
+		initialize: function(opt) {
+			this.account = opt.account;
 		},
 
 		url: function() {
-            return window.opt.basePath + '/histories/2ef06f25-bd22-48e1-a3ea-4719a5554140/songs';
+            return window.opt.basePath + '/histories/'+this.account+'/songs';
         },
 
 		model: Song

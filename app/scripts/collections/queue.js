@@ -8,11 +8,11 @@ function( Backbone, Song ) {
 	/* Return a collection class definition */
 	return Backbone.Collection.extend({
 		initialize: function(opt) {
-			console.log('initialize a Queue collection');
+			this.account = opt.account;
 		},
 
 		url: function() {
-            return window.opt.basePath + '/queues/2ef06f25-bd22-48e1-a3ea-4719a5554140/songs';
+            return window.opt.basePath + '/queues/'+this.account+'/songs';
         },
 
 		model: Song

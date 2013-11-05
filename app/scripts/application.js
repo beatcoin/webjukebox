@@ -30,17 +30,33 @@ function( Backbone, Communicator, Queue, Archive, PlayHistory, HeaderView, Queue
 		//read account
 		var full = window.location.host;
 		var parts = full.split('.');
-		var account = parts[0];
+		var sub = parts[0];
+		var jbMap = {'test':'da8eefee-a420-4564-aaac-6aa3775534e2','meinhard':'526c687e1889080387b0911c'};
+		var account;
+		if(jbMap[sub]){
+			account = jbMap[sub];
+		}else{
+			var query = 'account';
+			var regex = new RegExp('[\\?&]' + query + '=([^&#]*)'),
+			results = regex.exec(location.search);
+		    sub = (results === null) ? null : decodeURIComponent(results[1].replace(/\+/g, ' '));
+		    if (sub){
+				account = jbMap[sub];
+		    }else{
+				account = jbMap.test;
+		    }
+		}
+		console.log('account: '+account);
 		//initialize views
-		var history = new PlayHistory();
+		var history = new PlayHistory({account:account});
 		App.playingRegion.show(new PlayingView({col:history}));
 		history.fetch();
 
-		var queue = new Queue();
+		var queue = new Queue({account:account});
 		App.queueRegion.show(new QueueView({collection:queue}));
 		queue.fetch();
 
-		var archive = new Archive();
+		var archive = new Archive({account:account});
 		App.archiveRegion.show(new ArchiveView({collection:archive,queue:queue}));
 		archive.fetch();
 
