@@ -2,7 +2,7 @@ define([
 	'backbone',
 	'hbs!tmpl/item/songView_tmpl'
 ],
-function( Backbone, SongviewTmpl  ) {
+function( Backbone, SongviewTmpl , lightbox ) {
     'use strict';
 
 	/* Return a ItemView class definition */
@@ -34,6 +34,7 @@ function( Backbone, SongviewTmpl  ) {
 			    data: '{"id": "'+this.model.get('id')+'"}',
 			    success: function(result) {
 	                console.log(result.address);
+	                //$(this.el).lightbox();
 	                self.queue.fetch();
 	            }
 			});
