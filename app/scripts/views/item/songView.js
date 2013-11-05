@@ -42,7 +42,12 @@ function( Backbone, SongviewTmpl , Lightbox ) {
                         ),
 	                });
 	                $('#'+result.address).click();
-	                self.queue.fetch();
+			self.queue.fetch({
+						success: function(){
+							$('#lightbox').children(":first").append( '<a href="bitcoin:'+result.address+'">bitcoin:'+result.address+'</a>');
+							console.dir($('#lightbox').children(":first"));
+						}
+			});
 	            }
 			});
         },
