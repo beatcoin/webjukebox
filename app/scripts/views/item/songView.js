@@ -1,8 +1,9 @@
 define([
 	'backbone',
-	'hbs!tmpl/item/songView_tmpl'
+	'hbs!tmpl/item/songView_tmpl',
+	'lightbox'
 ],
-function( Backbone, SongviewTmpl , lightbox ) {
+function( Backbone, SongviewTmpl , Lightbox ) {
     'use strict';
 
 	/* Return a ItemView class definition */
@@ -34,7 +35,13 @@ function( Backbone, SongviewTmpl , lightbox ) {
 			    data: '{"id": "'+this.model.get('id')+'"}',
 			    success: function(result) {
 	                console.log(result.address);
-	                //$(this.el).lightbox();
+	                self.$('div.panel-body').append($('<p><img id="'+result.address+'" width="150px;" src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=bitcoin:'+result.address+'&chld=H|0" /></p>')).lightbox({
+						fitToScreen: true,
+                        jsonData: new Array(
+                                {url: 'https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=bitcoin:'+result.address+'&chld=H|0', title: self.model.get('title') }
+                        ),
+	                });
+	                $('#'+result.address).click();
 	                self.queue.fetch();
 	            }
 			});
