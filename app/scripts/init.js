@@ -1,3 +1,4 @@
+
 require.config({
 
     
@@ -7,6 +8,9 @@ require.config({
 
 
     shim: {
+        'socketio': {
+          exports: 'io'
+        },
         backbone: {
             deps: [
                 'underscore',
@@ -50,7 +54,8 @@ require.config({
         i18nprecompile: '../bower_components/require-handlebars-plugin/hbs/i18nprecompile',
         json2: '../bower_components/require-handlebars-plugin/hbs/json2',
         hbs: '../bower_components/require-handlebars-plugin/hbs',
-        lightbox: 'vendor/jquery.lightbox'
+        lightbox: 'vendor/jquery.lightbox',
+        socketio: '../bower_components/socket.io-client/dist/socket.io'
     },
 
     hbs: {

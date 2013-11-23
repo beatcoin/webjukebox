@@ -12,7 +12,7 @@ function( Backbone, Song ) {
 		},
 
 		url: function() {
-            return window.opt.basePath + '/queues/'+this.account+'/songs';
+            return window.opt.basePath + '/queues/'+this.account;
         },
 
 		model: Song

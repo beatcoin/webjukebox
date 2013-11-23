@@ -11,9 +11,6 @@ function( Backbone, PayView, QueueviewTmpl  ) {
 
 		initialize: function() {
 			var collection = this.collection;
-			window.setInterval(function(){
-				collection.fetch();
-			}, 2000);
 		},
 		
 		itemView: PayView,

@@ -30,7 +30,7 @@ function( Backbone, SongviewTmpl , Lightbox ) {
 			var self = this;
 			$.ajax({
 			    type: 'PUT',
-			    url: window.opt.basePath + '/queues/'+this.account+'/songs',
+			    url: window.opt.basePath + '/queues/'+this.account,
 			    contentType: 'application/json',
 			    data: '{"id": "'+this.model.get('id')+'"}',
 			    success: function(result) {

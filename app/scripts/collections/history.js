@@ -12,7 +12,7 @@ function( Backbone, Song ) {
 		},
 
 		url: function() {
-            return window.opt.basePath + '/histories/'+this.account+'/songs';
+            return window.opt.basePath + '/histories/'+this.account;
         },
 
 		model: Song

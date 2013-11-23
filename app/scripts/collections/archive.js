@@ -13,7 +13,7 @@ function( Backbone, Song ) {
 
 
 		url: function() {
-            return window.opt.basePath + '/archives/'+this.account+'/songs';
+            return window.opt.basePath + '/songs/'+this.account;
         },
 
 		model: Song

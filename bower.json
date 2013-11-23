@@ -2,7 +2,7 @@
   "name": "tmp",
   "version": "0.0.0",
   "dependencies": {
-    "sass-bootstrap": "~2.3.0",
+    "sass-bootstrap": null,
     "jquery": "~1.9.0",
     "requirejs": "~2.1.5",
     "requirejs-text": "~2.0.5",
@@ -15,8 +15,9 @@
     "require-handlebars-plugin": "~0.4.0",
     "mocha": "~1.12.0",
     "chai": "~1.7.2",
-    "sinon": "~1.7.3"
+    "sinon": "~1.7.3",
+    "socket.io-client": null
   },
   "devDependencies": {},
-  "directory": "bower_components"
+  "directory": "app/bower_components"
 }

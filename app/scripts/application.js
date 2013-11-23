@@ -7,7 +7,8 @@ define([
 	'views/headerView',
 	'views/composite/queueView',
 	'views/composite/archiveView',
-	'views/playingView'
+	'views/playingView',
+	'socketio'
 ],
 
 function( Backbone, Communicator, Queue, Archive, PlayHistory, HeaderView, QueueView, ArchiveView, PlayingView ) {
@@ -67,6 +68,18 @@ function( Backbone, Communicator, Queue, Archive, PlayHistory, HeaderView, Queue
 		var archive = new Archive({account:account});
 		App.archiveRegion.show(new ArchiveView({collection:archive,queue:queue,account:account}));
 		archive.fetch();
+
+		var socket = io.connect('http://localhost:8081');
+		socket.on('connect', function() {
+            var obj = { '@class' : 'org.beatcoin.pojo.Subscribe',
+                        'room' : account
+                      };
+            socket.json.send(obj);
+            console.log('subscribed');
+        });
+		socket.on('message', function (data) {
+		    queue.fetch();
+		});
 
 		//start router
 		Communicator.mediator.trigger("APP:START");
