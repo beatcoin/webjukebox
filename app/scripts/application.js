@@ -75,7 +75,6 @@ function( Backbone, Communicator, Queue, Archive, PlayHistory, HeaderView, Queue
                         'room' : account
                       };
             socket.json.send(obj);
-            console.log('subscribed');
         });
 		socket.on('message', function (data) {
 		    queue.fetch();
