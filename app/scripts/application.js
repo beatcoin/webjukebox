@@ -69,7 +69,7 @@ function( Backbone, Communicator, Queue, Archive, PlayHistory, HeaderView, Queue
 		App.archiveRegion.show(new ArchiveView({collection:archive,queue:queue,account:account}));
 		archive.fetch();
 
-		var socket = io.connect('http://localhost:8081');
+		var socket = io.connect(window.opt.basePath+':8081');
 		socket.on('connect', function() {
             var obj = { '@class' : 'org.beatcoin.pojo.Subscribe',
                         'room' : account
